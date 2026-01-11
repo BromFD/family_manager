@@ -1,6 +1,6 @@
 def binary_search(array, number, mode):
     left = 0
-    right = len(array) - 1
+    right = len(array)
     mid = 0
 
     if mode == 'first': # поиск индекса первого элемента, меньшего или равного number

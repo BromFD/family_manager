@@ -52,7 +52,6 @@ if option == 1:
         high_slice = binary_search(datetime_values, current_date_value, 'last')
         low_slice = binary_search(datetime_values, N_date_value, 'first')
         cut_sorted_task_data = sorted_task_data[low_slice:high_slice][::-1] # Сортировка идёт по возрастанию, поэтому список инвертируется, списки будут инвертироваться по этой же причине
-
         for task in range(high_slice - low_slice):
             print(cut_sorted_task_data[task])
     else:
@@ -60,8 +59,8 @@ if option == 1:
 
 elif option == 2:
     # Тип отчёта 2
-    name = str(input("Введите члена семьи: "))
-    failed_tasks = [task for task in task_data if task["Статус"] == 'провалена' and task["Исполнитель"] == name]
+    name = str(input("Введите члена семьи: ")).lower()
+    failed_tasks = [task for task in task_data if task["Статус"] == 'провалена' and task["Исполнитель"].lower() == name]
     datetime_values = [convert_datetime_to_value(task["Дата_и_время_окончания"]) for task in failed_tasks]
     description_values = [convert_sentence_to_value(task["Описание"], True) for task in failed_tasks]
     sorted_failed_tasks = shell_sort(failed_tasks, datetime_values, description_values)[::-1]
