@@ -23,5 +23,5 @@ def binary_search(array, number, mode):
 
         return left
 
-    return ValueError("Неправильный режим")
+    raise ValueError("Неправильный режим")
 
