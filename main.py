@@ -6,16 +6,18 @@ from convert_to_values import *
 path = str(input("Дорогой пользователь, пожалуйста, укажите полный путь к вашей таблице формата .csv:\n"))
 if not path.endswith(".csv"):
     raise ValueError("Программа работает только с файлами с расширением .csv")
-option = int(input("Пожалуйста, укажите какой опцией программы семейный менеджер вы хотели бы воспользоваться?"
-                   "\n1) Вывод списка задач выданных за прошедшие N-дней"
-                   "\n2) Вывод всех задач члена семьи имеющих статус 'провалено'"
-                   "\n3) Вывод списка всех задач, находящихся на исполнении\n"))
 
-#Конвертация csv таблицы в список словарей задач
 try:
     raw_file = open(path, 'r').read().split('\n')
 except:
     raise FileNotFoundError("Укажите правильный путь к файлу")
+
+#Конвертация csv таблицы в список словарей задач
+
+option = int(input("Пожалуйста, укажите какой опцией программы семейный менеджер вы хотели бы воспользоваться?"
+                   "\n1) Вывод списка задач выданных за прошедшие N-дней"
+                   "\n2) Вывод всех задач члена семьи имеющих статус 'провалено'"
+                   "\n3) Вывод списка всех задач, находящихся на исполнении\n"))
 
 file = [task.split(',') for task in raw_file]
 task_data = []
@@ -57,6 +59,7 @@ if option == 1:
         raise ValueError("Введено не натуральное значение N")
 
 elif option == 2:
+    # Тип отчёта 2
     name = str(input("Введите члена семьи: "))
     failed_tasks = [task for task in task_data if task["Статус"] == 'провалена' and task["Исполнитель"] == name]
     datetime_values = [convert_datetime_to_value(task["Дата_и_время_окончания"]) for task in failed_tasks]
@@ -67,6 +70,7 @@ elif option == 2:
         print(task)
 
 elif option == 3:
+    # Тип отчёта 3
     processing_tasks = [task for task in task_data if task["Статус"] == 'в процессе' or task["Статус"] == 'получена']
     datetime_values = [convert_datetime_to_value(task["Дата_и_время_окончания"]) for task in processing_tasks]
     name_values = [convert_sentence_to_value(task["Исполнитель"]) for task in processing_tasks]
