@@ -49,7 +49,7 @@ if option == 1:
         sorted_task_data = shell_sort(task_data, datetime_values, status_values)
         high_slice = binary_search(datetime_values, current_date_value, 'last')
         low_slice = binary_search(datetime_values, N_date_value, 'first')
-        cut_sorted_task_data = sorted_task_data[low_slice:high_slice][::-1]
+        cut_sorted_task_data = sorted_task_data[low_slice:high_slice][::-1] # Сортировка идёт по возрастанию, поэтому список инвертируется, списки будут инвертироваться по этой же причине
 
         for task in range(high_slice - low_slice):
             print(cut_sorted_task_data[task])
