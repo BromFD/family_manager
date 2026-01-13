@@ -3,7 +3,7 @@ def binary_search(array, number, mode):
     right = len(array)
     mid = 0
 
-    if mode == 'first': # поиск индекса первого элемента, меньшего или равного number
+    if mode == 'first': # поиск индекса первого элемента, большего или равного number
         while left < right:
             mid = (left + right) // 2
             if array[mid] < number:
