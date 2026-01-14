@@ -22,10 +22,10 @@ def gen_gaps(length): # Генерация последовательности 
     return gaps[::-1]
 
 
-def shell_sort(array, values, secondary_values=[]): # Модифицированная сортировка Шелла, сортирует сначала по основным значениям, но если они равны, то сортирует по вторичным
+def shell_sort(array, values, secondary_values=None): # Модифицированная сортировка Шелла, сортирует сначала по основным значениям, но если они равны, то сортирует по вторичным
     length = len(values)
     gaps = gen_gaps(length)
-    if secondary_values == []:
+    if secondary_values is None:
         secondary_values = [0] * length
     for gap in gaps:
         for el in range(gap, length):
